@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Облачное Хранение</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gray-50 flex flex-col">
+    <!-- Main Page Section -->
+    <div id="mainPage" class="flex flex-col flex-grow">
+      <!-- Header -->
+      <header class="bg-blue-600 text-white p-4">
+        <h1 class="text-center text-3xl font-bold">Облачное Хранение</h1>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="flex-grow flex flex-col items-center justify-center p-6">
+        <h2 class="text-4xl font-bold mb-4 text-gray-800">Добро пожаловать!</h2>
+        <p class="text-lg text-gray-600 mb-8 text-center max-w-xl">
+          Безопасное и удобное облачное хранилище для ваших файлов. Начните работу, используя возможности сервиса.
+        </p>
+        <!-- Auth Redirect Buttons -->
+        <div class="space-x-4">
+          <button id="mainLoginBtn" class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+            Вход
+          </button>
+          <button id="mainRegisterBtn" class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+            Регистрация
+          </button>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-200 text-gray-700 p-4 text-center">
+        <p>© 2023 Облачное Хранение. Все права защищены.</p>
+      </footer>
+    </div>
+
+    <!-- Authentication Page Section -->
+    <div id="authPage" class="hidden flex flex-col flex-grow">
+      <!-- Auth Header with Back Button -->
+      <header class="bg-blue-600 text-white p-4 flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Облачное Хранение - Авторизация</h1>
+        <button id="backBtn" class="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded">Главная</button>
+      </header>
+
+      <!-- Auth Content -->
+      <section class="flex-grow p-6">
+        <div class="max-w-md mx-auto bg-white rounded shadow p-6">
+          <!-- Tabs for Login and Registration -->
+          <div class="mb-6 flex border-b border-gray-200">
+            <button id="tabLogin" class="w-1/2 py-2 text-center font-semibold border-b-2">Вход</button>
+            <button id="tabRegister" class="w-1/2 py-2 text-center font-semibold border-b-2">Регистрация</button>
+          </div>
+          <!-- Login Form -->
+          <form id="loginForm" class="space-y-4">
+            <div>
+              <label for="loginEmail" class="block text-gray-700">Электронная почта</label>
+              <input id="loginEmail" type="email" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" />
+            </div>
+            <div>
+              <label for="loginPassword" class="block text-gray-700">Пароль</label>
+              <input id="loginPassword" type="password" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" />
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+              Войти
+            </button>
+          </form>
+
+          <!-- Registration Form -->
+          <form id="registerForm" class="space-y-4 hidden">
+            <div>
+              <label for="regUsername" class="block text-gray-700">Имя пользователя</label>
+              <input id="regUsername" type="text" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" />
+            </div>
+            <div>
+              <label for="regEmail" class="block text-gray-700">Электронная почта</label>
+              <input id="regEmail" type="email" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" />
+            </div>
+            <div>
+              <label for="regPassword" class="block text-gray-700">Пароль</label>
+              <input id="regPassword" type="password" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" />
+            </div>
+            <div>
+              <label for="regConfirmPassword" class="block text-gray-700">Подтвердите пароль</label>
+              <input id="regConfirmPassword" type="password" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2" />
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+              Зарегистрироваться
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Auth Footer -->
+      <footer class="bg-gray-200 text-gray-700 p-4 text-center">
+        <p>© 2023 Облачное Хранение. Все права защищены.</p>
+      </footer>
+    </div>
+
+    <script>
+      // Helper function to get query parameter
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Elements
+      const mainPage = document.getElementById('mainPage');
+      const authPage = document.getElementById('authPage');
+      const mainLoginBtn = document.getElementById('mainLoginBtn');
+      const mainRegisterBtn = document.getElementById('mainRegisterBtn');
+      const backBtn = document.getElementById('backBtn');
+      const tabLogin = document.getElementById('tabLogin');
+      const tabRegister = document.getElementById('tabRegister');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+
+      // Show main or auth based on query parameter 'mode'
+      function renderPage() {
+        const mode = getQueryParam('mode');
+        if (mode === 'login' || mode === 'register') {
+          mainPage.classList.add('hidden');
+          authPage.classList.remove('hidden');
+          if (mode === 'login') {
+            showLogin();
+          } else {
+            showRegister();
+          }
+        } else {
+          mainPage.classList.remove('hidden');
+          authPage.classList.add('hidden');
+        }
+      }
+
+      // Navigation from main page to auth page via button click
+      mainLoginBtn.addEventListener('click', function() {
+        window.location.search = '?mode=login';
+      });
+      mainRegisterBtn.addEventListener('click', function() {
+        window.location.search = '?mode=register';
+      });
+
+      // Back button returns to main page
+      backBtn.addEventListener('click', function() {
+        window.location.href = window.location.pathname;
+      });
+
+      // Functions to toggle forms within auth page
+      function showLogin() {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        tabLogin.classList.add('border-blue-600', 'text-blue-600');
+        tabLogin.classList.remove('border-gray-300', 'text-gray-600');
+        tabRegister.classList.remove('border-blue-600', 'text-blue-600');
+        tabRegister.classList.add('border-gray-300', 'text-gray-600');
+      }
+
+      function showRegister() {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        tabRegister.classList.add('border-blue-600', 'text-blue-600');
+        tabRegister.classList.remove('border-gray-300', 'text-gray-600');
+        tabLogin.classList.remove('border-blue-600', 'text-blue-600');
+        tabLogin.classList.add('border-gray-300', 'text-gray-600');
+      }
+
+      tabLogin.addEventListener('click', showLogin);
+      tabRegister.addEventListener('click', showRegister);
+
+      // Local storage key for users
+      const usersKey = 'cloudStorageUsers';
+
+      // Utility to get users from localStorage
+      function getUsers() {
+        const users = localStorage.getItem(usersKey);
+        return users ? JSON.parse(users) : [];
+      }
+
+      // Utility to save users
+      function saveUser(user) {
+        const users = getUsers();
+        users.push(user);
+        localStorage.setItem(usersKey, JSON.stringify(users));
+      }
+
+      // Handle Login Submission
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value.trim();
+        const users = getUsers();
+        const user = users.find(u => u.email === email);
+        if (user) {
+          if (user.password === password) {
+            alert('Вход выполнен успешно, привет ' + user.username + '!');
+          } else {
+            alert('Неверный пароль');
+          }
+        } else {
+          alert('Пользователь с такой электронной почтой не найден');
+        }
+      });
+
+      // Handle Registration Submission
+      registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('regUsername').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value.trim();
+        const confirmPassword = document.getElementById('regConfirmPassword').value.trim();
+        if (password !== confirmPassword) {
+          alert('Пароли не совпадают');
+          return;
+        }
+        const users = getUsers();
+        const exists = users.some(u => u.email === email);
+        if (exists) {
+          alert('Пользователь с такой электронной почтой уже существует');
+          return;
+        }
+        const newUser = { username, email, password };
+        saveUser(newUser);
+        alert('Регистрация прошла успешно! Теперь вы можете войти в систему.');
+        // Switch to login form after registration
+        window.location.search = '?mode=login';
+      });
+
+      // Initialize page based on URL
+      renderPage();
+    </script>
+  </body>
+</html>
