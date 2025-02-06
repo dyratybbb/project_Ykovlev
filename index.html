@@ -6,7 +6,6 @@
     <title>Облачное Хранение</title>
     <link rel="stylesheet" href="styles/normalize.css" />
     <style>
-      /* Дополнительные стили для красоты */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -102,6 +101,75 @@
       .hidden {
         display: none;
       }
+
+      /* Стили для модального окна */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /* Секция для загрузки файлов */
+      .file-upload {
+        margin-top: 20px;
+        padding: 20px;
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .file-upload input[type="file"] {
+        display: none;
+      }
+
+      .file-upload label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .file-list {
+        margin-top: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .file-list li {
+        margin-bottom: 5px;
+      }
     </style>
   </head>
   <body class="page">
@@ -119,85 +187,86 @@
       <nav>
         <ul>
           <li><a href="#" id="menuHome">Главная</a></li>
-          <li><a href="#" id="menuAbout">О нас</a></li>
-          <li><a href="#" id="menuBlog">Блог</a></li>
-          <li><a href="#" id="menuMore">Еще</a></li>
+          <li><a href="#" id="menuRegister">Регистрация</a></li>
+          <li><a href="#" id="menuFiles">Мои файлы</a></li>
         </ul>
       </nav>
     </header>
     <main class="main">
-      <section class="auth auth--login" id="loginSection">
-        <h2 class="auth__title">Вход</h2>
-        <form id="loginForm" class="auth__form">
-          <label for="loginEmail" class="auth__label">Электронная почта:</label><br />
-          <input type="email" id="loginEmail" required class="auth__input" /><br />
-          <label for="loginPassword" class="auth__label">Пароль:</label><br />
-          <input type="password" id="loginPassword" required class="auth__input" /><br />
-          <button type="submit" class="auth__button">Войти</button>
-        </form>
-      </section>
-      <section class="auth auth--register hidden" id="registerSection">
-        <h2 class="auth__title">Регистрация</h2>
-        <form id="registerForm" class="auth__form">
-          <label for="regUsername" class="auth__label">Имя пользователя:</label><br />
-          <input type="text" id="regUsername" required class="auth__input" /><br />
-          <label for="regEmail" class="auth__label">Электронная почта:</label><br />
-          <input type="email" id="regEmail" required class="auth__input" /><br />
-          <label for="regPassword" class="auth__label">Пароль:</label><br />
-          <input type="password" id="regPassword" required class="auth__input" /><br />
-          <label for="regConfirmPassword" class="auth__label">Подтвердите пароль:</label><br />
-          <input type="password" id="regConfirmPassword" required class="auth__input" /><br />
-          <button type="submit" class="auth__button">Зарегистрироваться</button>
+      <section id="fileSection" class="file-upload hidden">
+        <h2>Загрузка файлов</h2>
+        <form id="fileForm">
+          <label for="fileInput">Выберите файл</label>
+          <input type="file" id="fileInput" multiple />
+          <ul class="file-list" id="fileList"></ul>
+          <button type="submit" class="auth__button">Загрузить</button>
         </form>
       </section>
     </main>
+
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Регистрация</h2>
+        <form id="registerForm">
+          <label for="regUsername">Имя пользователя:</label>
+          <input type="text" id="regUsername" required class="auth__input" />
+          <label for="regEmail">Электронная почта:</label>
+          <input type="email" id="regEmail" required class="auth__input" />
+          <label for="regPassword">Пароль:</label>
+          <input type="password" id="regPassword" required class="auth__input" />
+          <button type="submit" class="auth__button">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+
     <footer class="footer">
       <p class="footer__copyright">
         © 2023 Облачное Хранение. Все права защищены.
       </p>
     </footer>
+
     <script>
-      // Обработчики для меню
-      document.getElementById('menuHome').addEventListener('click', function (e) {
+      // Показ модального окна регистрации
+      document.getElementById('menuRegister').addEventListener('click', function (e) {
         e.preventDefault();
-        alert('Вы на главной странице!');
+        document.getElementById('registerModal').style.display = 'block';
       });
 
-      document.getElementById('menuAbout').addEventListener('click', function (e) {
-        e.preventDefault();
-        alert('Добро пожаловать в раздел "О нас"!');
-      });
-
-      document.getElementById('menuBlog').addEventListener('click', function (e) {
-        e.preventDefault();
-        alert('Перейдите в наш блог, чтобы узнать больше!');
-      });
-
-      document.getElementById('menuMore').addEventListener('click', function (e) {
-        e.preventDefault();
-        alert('Больше информации скоро появится!');
-      });
-
-      // Обработка формы входа
-      document.getElementById('loginForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var email = document.getElementById('loginEmail').value;
-        alert('Попытка входа с почтой: ' + email);
+      // Закрытие модального окна
+      document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('registerModal').style.display = 'none';
       });
 
       // Обработка формы регистрации
       document.getElementById('registerForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        var username = document.getElementById('regUsername').value;
-        var email = document.getElementById('regEmail').value;
-        var password = document.getElementById('regPassword').value;
-        var confirmPassword = document.getElementById('regConfirmPassword').value;
+        const username = document.getElementById('regUsername').value;
+        const email = document.getElementById('regEmail').value;
+        alert('Регистрация прошла успешно. Добро пожаловать, ' + username + '!');
+        document.getElementById('registerModal').style.display = 'none';
+      });
 
-        if (password !== confirmPassword) {
-          alert('Пароли не совпадают');
-          return;
-        }
-        alert('Регистрация пользователя: ' + username);
+      // Показ раздела "Мои файлы"
+      document.getElementById('menuFiles').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('fileSection').classList.toggle('hidden');
+      });
+
+      // Обработка загрузки файлов
+      document.getElementById('fileForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        fileList.innerHTML = '';
+
+        Array.from(fileInput.files).forEach((file) => {
+          const li = document.createElement('li');
+          li.textContent = file.name;
+          fileList.appendChild(li);
+        });
+
+        alert('Файлы успешно загружены!');
       });
     </script>
   </body>
