@@ -5,273 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Облачное Хранение</title>
     <link rel="stylesheet" href="styles/normalize.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-
-      .header {
-        display: flex;
-        align-items: center;
-        background-color: #4caf50;
-        padding: 10px 20px;
-        color: white;
-      }
-
-      .header__logo-image {
-        margin-right: 15px;
-      }
-
-      .header__title {
-        flex-grow: 1;
-        font-size: 24px;
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
-      }
-
-      nav ul li {
-        margin-right: 15px;
-      }
-
-      nav ul li a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-      }
-
-      nav ul li a:hover {
-        text-decoration: underline;
-      }
-
-      .main {
-        padding: 20px;
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      .auth {
-        padding: 20px;
-        border: 2px dashed #ccc;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        width: 100%;
-        max-width: 400px;
-        margin: 20px auto;
-      }
-
-      .auth label {
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      .auth input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      .auth button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px;
-        width: 100%;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .auth button:hover {
-        background-color: #45a049;
-      }
-
-      .file-upload {
-        margin-top: 20px;
-        padding: 20px;
-        border: 2px dashed #ccc;
-        border-radius: 10px;
-        text-align: center;
-        background-color: #f9f9f9;
-      }
-
-      .file-upload input[type="file"] {
-        display: none;
-      }
-
-      .file-upload label {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #4caf50;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .file-upload label:hover {
-        background-color: #45a049;
-      }
-
-      .file-list {
-        margin-top: 15px;
-        list-style: none;
-        padding: 0;
-      }
-
-      .file-list li {
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .file-list li .file-name {
-        margin-right: 10px;
-      }
-
-      .file-list li .remove-file,
-      .file-list li .move-to-trash {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-
-      .file-list li .remove-file:hover,
-      .file-list li .move-to-trash:hover {
-        background-color: #d32f2f;
-      }
-
-      .footer {
-        text-align: center;
-        padding: 10px;
-        background-color: #4caf50;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body class="page">
     <header class="header">
       <div class="header__logo">
-        <img
-          src="images/free-icon-cloud-storage-4836221.png"
-          alt="Логотип Облачного Хранения"
-          class="header__logo-image"
-          height="50"
-          width="50"
-        />
+        <img src="images/free-icon-cloud-storage-4836221.png" alt="Логотип Облачного Хранения" class="header__logo-image" height=100 width=100/> 
         <h1 class="header__title">Облачное Хранение</h1>
+        <nav>
+          <ul>
+          <li><a href="#">Kypc</a></li>
+            <li><a href="#">O Hac</a></li> 
+            <li><a href="#">Блor</a></li> 
+            <li><a href="#">Eшe</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          <li><a href="#" id="menuHome">Главная</a></li>
-          <li><a href="#" id="menuLogin">Вход</a></li>
-          <li><a href="#" id="menuRegister">Регистрация</a></li>
-          <li><a href="#" id="menuFiles" class="hidden">Мои файлы</a></li>
-          <li><a href="#" id="menuTrash" class="hidden">Корзина</a></li>
-        </ul>
-      </nav>
     </header>
     <main class="main">
-      <!-- Форма входа -->
-      <section id="loginSection" class="auth hidden">
-        <h2>Вход</h2>
-        <form id="loginForm">
-          <label for="loginEmail">Электронная почта:</label>
-          <input type="email" id="loginEmail" required />
-          <label for="loginPassword">Пароль:</label>
-          <input type="password" id="loginPassword" required />
-          <button type="submit">Войти</button>
+      <section class="auth auth--login">
+        <h2 class="auth__title">Вход</h2>
+        <form id="loginForm" class="auth__form">
+          <label for="loginEmail" class="auth__label">Электронная почта:</label><br />
+          <input type="email" id="loginEmail" required class="auth__input" /><br />
+          <label for="loginPassword" class="auth__label">Пароль:</label><br />
+          <input type="password" id="loginPassword" required class="auth__input" /><br />
+          <button type="submit" class="auth__button">Войти</button>
         </form>
       </section>
-
-      <!-- Форма регистрации -->
-      <section id="registerSection" class="auth hidden">
-        <h2>Регистрация</h2>
-        <form id="registerForm">
-          <label for="regEmail">Электронная почта:</label>
-          <input type="email" id="regEmail" required />
-          <label for="regPassword">Пароль:</label>
-          <input type="password" id="regPassword" required />
-          <button type="submit">Зарегистрироваться</button>
+      <section class="auth auth--register">
+        <h2 class="auth__title">Регистрация</h2>
+        <form id="registerForm" class="auth__form">
+          <label for="regUsername" class="auth__label">Имя пользователя:</label><br />
+          <input type="text" id="regUsername" required class="auth__input" /><br />
+          <label for="regEmail" class="auth__label">Электронная почта:</label><br />
+          <input type="email" id="regEmail" required class="auth__input" /><br />
+          <label for="regPassword" class="auth__label">Пароль:</label><br />
+          <input type="password" id="regPassword" required class="auth__input" /><br />
+          <label for="regConfirmPassword" class="auth__label">Подтвердите пароль:</label><br />
+          <input type="password" id="regConfirmPassword" required class="auth__input" /><br />
+          <button type="submit" class="auth__button">Зарегистрироваться</button>
         </form>
-      </section>
-
-      <!-- Секция загрузки файлов -->
-      <section id="fileSection" class="hidden">
-        <h2>Мои файлы</h2>
-        <div class="file-upload">
-          <form id="fileForm">
-            <label for="fileInput">Выберите файлы</label>
-            <input type="file" id="fileInput" multiple />
-            <ul class="file-list" id="fileList"></ul>
-            <button type="submit">Загрузить</button>
-          </form>
-        </div>
-      </section>
-
-      <!-- Секция корзины -->
-      <section id="trashSection" class="hidden">
-        <h2>Корзина</h2>
-        <ul class="file-list" id="trashList"></ul>
       </section>
     </main>
-
     <footer class="footer">
-      <p class="footer__copyright">
-        © 2023 Облачное Хранение. Все права защищены.
-      </p>
+      <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
     </footer>
-
     <script>
-      const menuLogin = document.getElementById('menuLogin');
-      const menuRegister = document.getElementById('menuRegister');
-      const menuFiles = document.getElementById('menuFiles');
-      const menuTrash = document.getElementById('menuTrash');
-      const loginSection = document.getElementById('loginSection');
-      const registerSection = document.getElementById('registerSection');
-      const fileSection = document.getElementById('fileSection');
-      const trashSection = document.getElementById('trashSection');
-      const fileInput = document.getElementById('fileInput');
-      const fileList = document.getElementById('fileList');
-      const trashList = document.getElementById('trashList');
-
-      // Показать/скрыть секции
-      menuLogin.addEventListener('click', () => {
-        loginSection.classList.toggle('hidden');
-        registerSection.classList.add('hidden');
-      });
-
-      menuRegister.addEventListener('click', () => {
-        registerSection.classList.toggle('hidden');
-        loginSection.classList.add('hidden');
-      });
-
       document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        alert('Вход выполнен успешно!');
-        loginSection.classList.add('hidden');
-        menuFiles.classList.remove('hidden');
-        menuTrash.classList.remove('hidden');
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+        // Простая обработка формы для входа
+        alert('Попытка входа с почтой: ' + email);
       });
 
-      document.getElementById('registerForm').addEventListener('submit', function (e
+      document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var username = document.getElementById('regUsername').value;
+        var email = document.getElementById('regEmail').value;
+        var password = document.getElementById('regPassword').value;
+        var confirmPassword = document.getElementById('regConfirmPassword').value;
+        if (password !== confirmPassword) {
+          alert('Пароли не совпадают');
+          return;
+        }
+        // Простая обработка формы для регистрации
+        alert('Регистрация пользователя: ' + username); 
+      });
+    </script>
+  </body>
+</html>
