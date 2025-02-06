@@ -5,24 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Облачное Хранение</title>
     <link rel="stylesheet" href="styles/normalize.css" />
+    <style>
+      /* Дополнительные стили для красоты */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        background-color: #4caf50;
+        padding: 10px 20px;
+        color: white;
+      }
+
+      .header__logo-image {
+        margin-right: 15px;
+      }
+
+      .header__title {
+        flex-grow: 1;
+        font-size: 24px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        margin-right: 15px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .main {
+        padding: 20px;
+      }
+
+      .auth {
+        margin-bottom: 40px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      .auth__title {
+        margin-top: 0;
+      }
+
+      .auth__input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .auth__button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .auth__button:hover {
+        background-color: #45a049;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
   <body class="page">
     <header class="header">
       <div class="header__logo">
-        <img src="images/free-icon-cloud-storage-4836221.png" alt="Логотип Облачного Хранения" class="header__logo-image" height=100 width=100/> 
+        <img
+          src="images/free-icon-cloud-storage-4836221.png"
+          alt="Логотип Облачного Хранения"
+          class="header__logo-image"
+          height="50"
+          width="50"
+        />
         <h1 class="header__title">Облачное Хранение</h1>
-        <nav>
-          <ul>
-          <li><a href="#">Kypc</a></li>
-            <li><a href="#">O Hac</a></li> 
-            <li><a href="#">Блor</a></li> 
-            <li><a href="#">Eшe</a></li>
-          </ul>
-        </nav>
       </div>
+      <nav>
+        <ul>
+          <li><a href="#" id="menuHome">Главная</a></li>
+          <li><a href="#" id="menuAbout">О нас</a></li>
+          <li><a href="#" id="menuBlog">Блог</a></li>
+          <li><a href="#" id="menuMore">Еще</a></li>
+        </ul>
+      </nav>
     </header>
     <main class="main">
-      <section class="auth auth--login">
+      <section class="auth auth--login" id="loginSection">
         <h2 class="auth__title">Вход</h2>
         <form id="loginForm" class="auth__form">
           <label for="loginEmail" class="auth__label">Электронная почта:</label><br />
@@ -32,7 +136,7 @@
           <button type="submit" class="auth__button">Войти</button>
         </form>
       </section>
-      <section class="auth auth--register">
+      <section class="auth auth--register hidden" id="registerSection">
         <h2 class="auth__title">Регистрация</h2>
         <form id="registerForm" class="auth__form">
           <label for="regUsername" class="auth__label">Имя пользователя:</label><br />
@@ -48,28 +152,51 @@
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
+      <p class="footer__copyright">
+        © 2023 Облачное Хранение. Все права защищены.
+      </p>
     </footer>
     <script>
+      // Обработчики для меню
+      document.getElementById('menuHome').addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Вы на главной странице!');
+      });
+
+      document.getElementById('menuAbout').addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Добро пожаловать в раздел "О нас"!');
+      });
+
+      document.getElementById('menuBlog').addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Перейдите в наш блог, чтобы узнать больше!');
+      });
+
+      document.getElementById('menuMore').addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Больше информации скоро появится!');
+      });
+
+      // Обработка формы входа
       document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault();
         var email = document.getElementById('loginEmail').value;
-        var password = document.getElementById('loginPassword').value;
-        // Простая обработка формы для входа
         alert('Попытка входа с почтой: ' + email);
       });
 
+      // Обработка формы регистрации
       document.getElementById('registerForm').addEventListener('submit', function (e) {
         e.preventDefault();
         var username = document.getElementById('regUsername').value;
         var email = document.getElementById('regEmail').value;
         var password = document.getElementById('regPassword').value;
         var confirmPassword = document.getElementById('regConfirmPassword').value;
+
         if (password !== confirmPassword) {
           alert('Пароли не совпадают');
           return;
         }
-        // Простая обработка формы для регистрации
         alert('Регистрация пользователя: ' + username);
       });
     </script>
