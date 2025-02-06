@@ -54,6 +54,47 @@
         padding: 20px;
       }
 
+      .hidden {
+        display: none;
+      }
+
+      .auth {
+        padding: 20px;
+        border: 2px dashed #ccc;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+
+      .auth label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .auth input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .auth button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .auth button:hover {
+        background-color: #45a049;
+      }
+
       .file-upload {
         margin-top: 20px;
         padding: 20px;
@@ -101,7 +142,8 @@
         margin-right: 10px;
       }
 
-      .file-list li .remove-file {
+      .file-list li .remove-file,
+      .file-list li .move-to-trash {
         background-color: #f44336;
         color: white;
         border: none;
@@ -110,7 +152,8 @@
         border-radius: 5px;
       }
 
-      .file-list li .remove-file:hover {
+      .file-list li .remove-file:hover,
+      .file-list li .move-to-trash:hover {
         background-color: #d32f2f;
       }
 
@@ -141,19 +184,55 @@
       <nav>
         <ul>
           <li><a href="#" id="menuHome">Главная</a></li>
-          <li><a href="#" id="menuAbout">О нас</a></li>
+          <li><a href="#" id="menuLogin">Вход</a></li>
+          <li><a href="#" id="menuRegister">Регистрация</a></li>
+          <li><a href="#" id="menuFiles" class="hidden">Мои файлы</a></li>
+          <li><a href="#" id="menuTrash" class="hidden">Корзина</a></li>
         </ul>
       </nav>
     </header>
     <main class="main">
-      <h2>Загрузка файлов</h2>
-      <section class="file-upload">
-        <form id="fileForm">
-          <label for="fileInput">Выберите файлы</label>
-          <input type="file" id="fileInput" multiple />
-          <ul class="file-list" id="fileList"></ul>
-          <button type="submit" class="auth__button">Загрузить</button>
+      <!-- Форма входа -->
+      <section id="loginSection" class="auth hidden">
+        <h2>Вход</h2>
+        <form id="loginForm">
+          <label for="loginEmail">Электронная почта:</label>
+          <input type="email" id="loginEmail" required />
+          <label for="loginPassword">Пароль:</label>
+          <input type="password" id="loginPassword" required />
+          <button type="submit">Войти</button>
         </form>
+      </section>
+
+      <!-- Форма регистрации -->
+      <section id="registerSection" class="auth hidden">
+        <h2>Регистрация</h2>
+        <form id="registerForm">
+          <label for="regEmail">Электронная почта:</label>
+          <input type="email" id="regEmail" required />
+          <label for="regPassword">Пароль:</label>
+          <input type="password" id="regPassword" required />
+          <button type="submit">Зарегистрироваться</button>
+        </form>
+      </section>
+
+      <!-- Секция загрузки файлов -->
+      <section id="fileSection" class="hidden">
+        <h2>Мои файлы</h2>
+        <div class="file-upload">
+          <form id="fileForm">
+            <label for="fileInput">Выберите файлы</label>
+            <input type="file" id="fileInput" multiple />
+            <ul class="file-list" id="fileList"></ul>
+            <button type="submit">Загрузить</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Секция корзины -->
+      <section id="trashSection" class="hidden">
+        <h2>Корзина</h2>
+        <ul class="file-list" id="trashList"></ul>
       </section>
     </main>
 
@@ -164,40 +243,35 @@
     </footer>
 
     <script>
+      const menuLogin = document.getElementById('menuLogin');
+      const menuRegister = document.getElementById('menuRegister');
+      const menuFiles = document.getElementById('menuFiles');
+      const menuTrash = document.getElementById('menuTrash');
+      const loginSection = document.getElementById('loginSection');
+      const registerSection = document.getElementById('registerSection');
+      const fileSection = document.getElementById('fileSection');
+      const trashSection = document.getElementById('trashSection');
       const fileInput = document.getElementById('fileInput');
       const fileList = document.getElementById('fileList');
+      const trashList = document.getElementById('trashList');
 
-      // Обработка загрузки файлов
-      document.getElementById('fileForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (fileInput.files.length === 0) {
-          alert('Выберите хотя бы один файл для загрузки.');
-          return;
-        }
-
-        Array.from(fileInput.files).forEach((file) => {
-          const li = document.createElement('li');
-
-          const fileNameSpan = document.createElement('span');
-          fileNameSpan.classList.add('file-name');
-          fileNameSpan.textContent = file.name;
-
-          const removeButton = document.createElement('button');
-          removeButton.classList.add('remove-file');
-          removeButton.textContent = 'Удалить';
-          removeButton.addEventListener('click', () => {
-            li.remove();
-          });
-
-          li.appendChild(fileNameSpan);
-          li.appendChild(removeButton);
-          fileList.appendChild(li);
-        });
-
-        alert('Файлы успешно добавлены в список!');
-        fileInput.value = ''; // Очистка выбора файлов
+      // Показать/скрыть секции
+      menuLogin.addEventListener('click', () => {
+        loginSection.classList.toggle('hidden');
+        registerSection.classList.add('hidden');
       });
-    </script>
-  </body>
-</html>
+
+      menuRegister.addEventListener('click', () => {
+        registerSection.classList.toggle('hidden');
+        loginSection.classList.add('hidden');
+      });
+
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Вход выполнен успешно!');
+        loginSection.classList.add('hidden');
+        menuFiles.classList.remove('hidden');
+        menuTrash.classList.remove('hidden');
+      });
+
+      document.getElementById('registerForm').addEventListener('submit', function (e
