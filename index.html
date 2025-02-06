@@ -28,6 +28,15 @@
       </div>
     </header>
     <main class="main">
+             <h2>Загрузка файлов</h2>
+      <section class="file-upload">
+        <form id="fileForm">
+          <label for="fileInput">Выберите файлы</label>
+          <input type="file" id="fileInput" multiple />
+          <ul class="file-list" id="fileList"></ul>
+          <button type="submit" class="auth__button">Загрузить</button>
+        </form>
+      </section>
       <section class="auth auth--login">
         <h2 class="auth__title">Вход</h2>
         <form id="loginForm" class="auth__form">
@@ -50,15 +59,6 @@
           <label for="regConfirmPassword" class="auth__label">Подтвердите пароль:</label><br />
           <input type="password" id="regConfirmPassword" required class="auth__input" /><br />
           <button type="submit" class="auth__button">Зарегистрироваться</button>
-        </form>
-      </section>
-       <h2>Загрузка файлов</h2>
-      <section class="file-upload">
-        <form id="fileForm">
-          <label for="fileInput">Выберите файлы</label>
-          <input type="file" id="fileInput" multiple />
-          <ul class="file-list" id="fileList"></ul>
-          <button type="submit" class="auth__button">Загрузить</button>
         </form>
       </section>
     </main>
