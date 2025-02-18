@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 body {
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: 16px;
@@ -9,105 +7,50 @@ body {
 }
 
 .header {
-  background-color: #4CAF50;
-  padding: 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 1em;
   text-align: center;
 }
 
 .header__title {
-  font-weight: 700;
+  font-weight: bold;
   font-size: 24px;
-  line-height: 1.2;
-  color: #fff;
-}
-
-.header__logo-image {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-nav li {
-  margin-right: 20px;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-nav a:hover {
-  color: #ccc;
+  margin-bottom: 0.5em;
 }
 
 .main {
   max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
+  margin: auto;
+  padding: 2em;
+}
+
+.file-upload {
+  background-color: #f0f0f0;
+  padding: 1em;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.auth {
-  padding: 20px;
-}
-
-.auth__title {
-  font-size: 20px;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-.auth__label {
-  font-size: 16px;
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-
-.auth__input {
-  font-size: 16px;
-  line-height: 1.2;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  margin-bottom: 20px;
+  border-radius: 0.5em;
 }
 
 .auth__button {
-  font-size: 16px;
-  line-height: 1.2;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: #fff;
+  background-color: #007bff;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  padding: 0.5em 1em;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .auth__button:hover {
-  background-color: #3e8e41;
+  background-color: #0056b3;
 }
 
 .footer {
-  background-color: #333;
-  padding: 20px;
+  background-color: #007bff;
+  color: #ffffff;
   text-align: center;
-  color: #fff;
-}
-
-.footer__copyright {
-  font-size: 14px;
-  line-height: 1.2;
+  padding: 0.5em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
