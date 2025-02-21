@@ -1,288 +1,135 @@
-import React, { useState, useRef, DragEvent, ChangeEvent } from 'react';
-
-const HomePage: React.FC = () => {
-  // Состояние для отображения модальных окон (вход/регистрация)
-  const [activeModal, setActiveModal] = useState<'login' | 'register' | null>(null);
-
-  // Состояния для формы входа
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-
-  // Состояния для формы регистрации
-  const [regUsername, setRegUsername] = useState('');
-  const [regEmail, setRegEmail] = useState('');
-  const [regPassword, setRegPassword] = useState('');
-  const [regConfirmPassword, setRegConfirmPassword] = useState('');
-
-  // Состояния для загрузки файлов
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [isDragActive, setIsDragActive] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Обработчики событий для drag & drop области
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragActive(true);
-  };
-
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragActive(false);
-  };
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      const newFiles = Array.from(e.dataTransfer.files);
-      setUploadedFiles(prev => [...prev, ...newFiles]);
-      e.dataTransfer.clearData();
-    }
-  };
-
-  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const newFiles = Array.from(e.target.files);
-      setUploadedFiles(prev => [...prev, ...newFiles]);
-    }
-  };
-
-  const handleDropzoneClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleDownload = (file: File) => {
-    alert(`Начинается скачивание файла: ${file.name}`);
-  };
-
-  const handleDeleteFile = (file: File) => {
-    setUploadedFiles(prev => prev.filter(f => f !== file));
-  };
-
-  const handleLoginSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(`Выполнен вход с почтой: ${loginEmail}`);
-    setLoginEmail('');
-    setLoginPassword('');
-    setActiveModal(null);
-  };
-
-  const handleRegisterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (regPassword !== regConfirmPassword) {
-      alert('Пароли не совпадают!');
-      return;
-    }
-    alert(`Пользователь ${regUsername} успешно зарегистрирован!`);
-    setRegUsername('');
-    setRegEmail('');
-    setRegPassword('');
-    setRegConfirmPassword('');
-    setActiveModal(null);
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <header className="w-full bg-white shadow p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-blue-600">Облачное хранилище</h1>
-        <div className="space-x-4">
-          <button
-            onClick={() => setActiveModal('login')}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md transition transform hover:scale-105"
-          >
-            Вход
-          </button>
-          <button
-            onClick={() => setActiveModal('register')}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md transition transform hover:scale-105"
-          >
-            Регистрация
-          </button>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Облачное Хранение</title>
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <style>
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('styles/fonts/Montserrat-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('styles/fonts/Montserrat-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('styles/fonts/Montserrat-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        src: url('styles/fonts/Montserrat-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body class="page">
+      <header class="header">
+        <div class="header__logo">
+          <img src="images/free-icon-cloud-storage-4836221.png" alt="Логотип Облачного Хранения" class="header__logo-image" height="100" width="100" />
+          <h1 class="header__title">Облачное Хранение</h1>
+            <nav>
+              <ul>
+                <li><a href="#" data-page="course">Курс</a></li>
+                <li><a href="#" data-page="about">О Нас</a></li>
+                <li><a href="#" data-page="blog">Блог</a></li>
+                <li><a href="#" data-page="more">Еще</a></li>
+                <li><a href="#" id="openLogin">Вход</a></li>
+                <li><a href="#" id="openreg">Регистрация</a></li>
+                <li><a href="#" data-page="files">Файлы</a></li>
+              </ul>
+            </nav>
         </div>
       </header>
-
-      <main className="flex flex-col items-center flex-1 p-6">
-        <div
-          onClick={handleDropzoneClick}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          className={`w-full max-w-2xl border-2 border-dashed rounded-xl p-8 mb-6 transition-colors cursor-pointer ${isDragActive ? 'border-blue-600 bg-blue-50' : 'border-blue-300 bg-white'}`}
-        >
-          <p className="text-center text-lg text-blue-600 mb-2">
-            Перетащите файлы сюда или нажмите для загрузки
-          </p>
-          <input
-            type="file"
-            multiple
-            ref={fileInputRef}
-            onChange={handleFileInputChange}
-            className="hidden"
-          />
+    <main class="main">
+      <h2>Загрузка файлов</h2>
+      <section class="file-upload">
+        <form id="fileForm">
+          <label for="fileInput">Выберите файлы</label>
+          <input type="file" id="fileInput" multiple />
+          <ul class="file-list" id="fileList"></ul>
+          <button type="submit" class="auth__button">Загрузить</button>
+        </form>
+      </section>
+    <<section class="auth auth--register">>
+      <div id="loginModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="closeLogin">&times;</span>
+          <h2>Вход</h2>
+          <form id="loginForm">
+            <label for="loginEmail">Электронная почта:</label>
+            <input type="email" id="loginEmail" required />
+            <label for="loginPassword">Пароль:</label>
+            <input type="password" id="loginPassword" required />
+            <button type="submit">Войти</button>
+          </form>
         </div>
+      </div>
+    </section>
+      <section class="auth auth--register">
+          <h2 class="auth__title">Регистрация</h2>
+          <form id="registerForm" class="auth__form">
+            <label for="regUsername" class="auth__label">Имя пользователя:</label><br />
+            <input type="text" id="regUsername" required class="auth__input" /><br />
+            <label for="regEmail" class="auth__label">Электронная почта:</label><br />
+            <input type="email" id="regEmail" required class="auth__input" /><br />
+            <label for="regPassword" class="auth__label">Пароль:</label><br />
+            <input type="password" id="regPassword" required class="auth__input" /><br />
+            <label for="regConfirmPassword" class="auth__label">Подтвердите пароль:</label><br />
+            <input type="password" id="regConfirmPassword" required class="auth__input" /><br />
+            <button type="submit" class="auth__button">Зарегистрироваться</button>
+          </form>
+      `</section>
+  </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
+    </footer>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+        // Простая обработка формы для входа
+        alert('Попытка входа с почтой: ' + email);
+      });
 
-        {uploadedFiles.length > 0 && (
-          <ul className="w-full max-w-2xl space-y-4">
-            {uploadedFiles.map((file, index) => (
-              <li key={index} className="flex justify-between items-center p-4 border border-gray-300 rounded-md bg-white">
-                <span className="text-blue-600">{file.name}</span>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleDownload(file)}
-                    className="px-3 py-1 bg-green-500 text-white rounded-md transition transform hover:scale-105"
-                  >
-                    Скачать
-                  </button>
-                  <button
-                    onClick={() => handleDeleteFile(file)}
-                    className="px-3 py-1 bg-red-500 text-white rounded-md transition transform hover:scale-105"
-                  >
-                    Удалить
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </main>
-
-      {activeModal === 'login' && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-fade-in">
-          <div className="bg-white p-6 rounded shadow-lg relative w-full max-w-sm">
-            <button
-              onClick={() => setActiveModal(null)}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-            >
-              X
-            </button>
-            <h2 className="text-xl font-bold mb-4 text-blue-600">Вход</h2>
-            <form onSubmit={handleLoginSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="loginEmail" className="block text-blue-600 font-semibold mb-1">
-                  Электронная почта
-                </label>
-                <input
-                  id="loginEmail"
-                  type="email"
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                  placeholder="Введите почту"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="loginPassword" className="block text-blue-600 font-semibold mb-1">
-                  Пароль
-                </label>
-                <input
-                  id="loginPassword"
-                  type="password"
-                  value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                  placeholder="Введите пароль"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-              <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md transition transform hover:scale-105">
-                Войти
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {activeModal === 'register' && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-fade-in">
-          <div className="bg-white p-6 rounded shadow-lg relative w-full max-w-sm">
-            <button
-              onClick={() => setActiveModal(null)}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-            >
-              X
-            </button>
-            <h2 className="text-xl font-bold mb-4 text-blue-600">Регистрация</h2>
-            <form onSubmit={handleRegisterSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="regUsername" className="block text-blue-600 font-semibold mb-1">
-                  Имя пользователя
-                </label>
-                <input
-                  id="regUsername"
-                  type="text"
-                  value={regUsername}
-                  onChange={(e) => setRegUsername(e.target.value)}
-                  placeholder="Введите имя пользователя"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="regEmail" className="block text-blue-600 font-semibold mb-1">
-                  Электронная почта
-                </label>
-                <input
-                  id="regEmail"
-                  type="email"
-                  value={regEmail}
-                  onChange={(e) => setRegEmail(e.target.value)}
-                  placeholder="Введите почту"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="regPassword" className="block text-blue-600 font-semibold mb-1">
-                  Пароль
-                </label>
-                <input
-                  id="regPassword"
-                  type="password"
-                  value={regPassword}
-                  onChange={(e) => setRegPassword(e.target.value)}
-                  placeholder="Введите пароль"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="regConfirmPassword" className="block text-blue-600 font-semibold mb-1">
-                  Подтвердите пароль
-                </label>
-                <input
-                  id="regConfirmPassword"
-                  type="password"
-                  value={regConfirmPassword}
-                  onChange={(e) => setRegConfirmPassword(e.target.value)}
-                  placeholder="Подтвердите пароль"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-              <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md transition transform hover:scale-105">
-                Зарегистрироваться
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      <footer className="mt-6 text-center text-sm text-gray-500">
-        © 2023 Облачное хранилище. Все права защищены.
-      </footer>
-
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+      document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var username = document.getElementById('regUsername').value;
+        var email = document.getElementById('regEmail').value;
+        var password = document.getElementById('regPassword').value;
+        var confirmPassword = document.getElementById('regConfirmPassword').value;
+        if (password !== confirmPassword) {
+          alert('Пароли не совпадают');
+          return;
         }
-        .animate-fade-in {
-          animation: fadeIn 0.5s ease-in-out;
-        }
-      `}</style>
-    </div>
-  );
-};
+        // Простая обработка формы для регистрации
+        alert('Регистрация пользователя: ' + username);
+      });
 
-export default HomePage;
+      document.getElementById('openLogin').addEventListener('click', function () {
+        document.getElementById('loginModal').style.display = 'block';
+      });
+
+      document.getElementById('closeLogin').addEventListener('click', function () {
+        document.getElementById('loginModal').style.display = 'none';
+      });
+
+      window.addEventListener('click', function (event) {
+        if (event.target == document.getElementById('loginModal')) {
+          document.getElementById('loginModal').style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
