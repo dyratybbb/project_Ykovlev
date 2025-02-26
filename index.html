@@ -38,45 +38,45 @@
         <div class="header__logo">
           <img src="images/free-icon-cloud-storage-4836221.png" alt="Логотип Облачного Хранения" class="header__logo-image" height="100" width="100" />
           <h1 class="header__title">Облачное Хранение</h1>
-            <nav>
-              <ul>
-                <li><a href="#" data-page="course">Курс</a></li>
-                <li><a href="#" data-page="about">О Нас</a></li>
-                <li><a href="#" data-page="blog">Блог</a></li>
-                <li><a href="#" data-page="more">Еще</a></li>
-                <li><a href="#" id="openLogin">Вход</a></li>
-                <li><a href="#" id="openreg">Регистрация</a></li>
-                <li><a href="#" data-page="files">Файлы</a></li>
-              </ul>
-            </nav>
         </div>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item"><a href="#" data-page="course" class="header__nav-link">Курс</a></li>
+            <li class="header__nav-item"><a href="#" data-page="about" class="header__nav-link">О Нас</a></li>
+            <li class="header__nav-item"><a href="#" data-page="blog" class="header__nav-link">Блог</a></li>
+            <li class="header__nav-item"><a href="#" data-page="more" class="header__nav-link">Еще</a></li>
+            <li class="header__nav-item"><a href="#" id="openLogin" class="header__nav-link">Вход</a></li>
+            <li class="header__nav-item"><a href="#" id="openreg" class="header__nav-link">Регистрация</a></li>
+            <li class="header__nav-item"><a href="#" data-page="files" class="header__nav-link">Файлы</a></li>
+          </ul>
+        </nav>
       </header>
     <main class="main">
-      <h2>Загрузка файлов</h2>
+      <h2 class="main__title">Загрузка файлов</h2>
       <section class="file-upload">
-        <form id="fileForm">
-          <label for="fileInput">Выберите файлы</label>
-          <input type="file" id="fileInput" multiple />
-          <ul class="file-list" id="fileList"></ul>
-          <button type="submit" class="auth__button">Загрузить</button>
+        <form id="fileForm" class="file-upload__form">
+          <label for="fileInput" class="file-upload__label">Выберите файлы</label>
+          <input type="file" id="fileInput" class="file-upload__input" multiple />
+          <ul class="file-upload__list" id="fileList"></ul>
+          <button type="submit" class="file-upload__button">Загрузить</button>
         </form>
       </section>
-    <<section class="auth auth--register">>
-      <div id="loginModal" class="modal">
-        <div class="modal-content">
-          <span class="close" id="closeLogin">&times;</span>
-          <h2>Вход</h2>
-          <form id="loginForm">
-            <label for="loginEmail">Электронная почта:</label>
-            <input type="email" id="loginEmail" required />
-            <label for="loginPassword">Пароль:</label>
-            <input type="password" id="loginPassword" required />
-            <button type="submit">Войти</button>
-          </form>
+      <section class="auth auth_type_login">
+        <div id="loginModal" class="modal">
+          <div class="modal__content">
+            <span class="modal__close" id="closeLogin">&times;</span>
+            <h2 class="modal__title">Вход</h2>
+            <form id="loginForm" class="auth__form">
+              <label for="loginEmail" class="auth__label">Электронная почта:</label>
+              <input type="email" id="loginEmail" class="auth__input" required />
+              <label for="loginPassword" class="auth__label">Пароль:</label>
+              <input type="password" id="loginPassword" class="auth__input" required />
+              <button type="submit" class="auth__button">Войти</button>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
-      <section class="auth auth--register">
+      </section>
+      <section class="auth auth_type_register">
           <h2 class="auth__title">Регистрация</h2>
           <form id="registerForm" class="auth__form">
             <label for="regUsername" class="auth__label">Имя пользователя:</label><br />
@@ -89,8 +89,8 @@
             <input type="password" id="regConfirmPassword" required class="auth__input" /><br />
             <button type="submit" class="auth__button">Зарегистрироваться</button>
           </form>
-      `</section>
-  </main>
+      </section>
+    </main>
     <footer class="footer">
       <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
     </footer>
