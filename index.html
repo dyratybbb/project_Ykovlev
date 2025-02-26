@@ -470,3 +470,100 @@
       .file-upload__button:active {
         transform: translateY(1px);
         box-shadow:
+       </style>
+  </head>
+  <body class="page">
+      <header class="header">
+        <div class="header__logo">
+          <img src="images/free-icon-cloud-storage-4836221.png" alt="Логотип Облачного Хранения" class="header__logo-image" height="100" width="100" />
+          <h1 class="header__title">Облачное Хранение</h1>
+        </div>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item"><a href="#" data-page="course" class="header__nav-link">Курс</a></li>
+            <li class="header__nav-item"><a href="#" data-page="about" class="header__nav-link">О Нас</a></li>
+            <li class="header__nav-item"><a href="#" data-page="blog" class="header__nav-link">Блог</a></li>
+            <li class="header__nav-item"><a href="#" data-page="more" class="header__nav-link">Еще</a></li>
+            <li class="header__nav-item"><a href="#" id="openLogin" class="header__nav-link">Вход</a></li>
+            <li class="header__nav-item"><a href="#" id="openreg" class="header__nav-link">Регистрация</a></li>
+            <li class="header__nav-item"><a href="#" data-page="files" class="header__nav-link">Файлы</a></li>
+          </ul>
+        </nav>
+      </header>
+    <main class="main">
+      <h2 class="main__title">Загрузка файлов</h2>
+      <section class="file-upload">
+        <form id="fileForm" class="file-upload__form">
+          <label for="fileInput" class="file-upload__label">Выберите файлы</label>
+          <input type="file" id="fileInput" class="file-upload__input" multiple />
+          <ul class="file-upload__list" id="fileList"></ul>
+          <button type="submit" class="file-upload__button">Загрузить</button>
+        </form>
+      </section>
+      <section class="auth auth_type_login">
+        <div id="loginModal" class="modal">
+          <div class="modal__content">
+            <span class="modal__close" id="closeLogin">&times;</span>
+            <h2 class="modal__title">Вход</h2>
+            <form id="loginForm" class="auth__form">
+              <label for="loginEmail" class="auth__label">Электронная почта:</label>
+              <input type="email" id="loginEmail" class="auth__input" required />
+              <label for="loginPassword" class="auth__label">Пароль:</label>
+              <input type="password" id="loginPassword" class="auth__input" required />
+              <button type="submit" class="auth__button">Войти</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="auth auth_type_register">
+          <h2 class="auth__title">Регистрация</h2>
+          <form id="registerForm" class="auth__form">
+            <label for="regUsername" class="auth__label">Имя пользователя:</label>
+            <input type="text" id="regUsername" required class="auth__input" />
+            <label for="regEmail" class="auth__label">Электронная почта:</label>
+            <input type="email" id="regEmail" required class="auth__input" />
+            <label for="regPassword" class="auth__label">Пароль:</label>
+            <input type="password" id="regPassword" required class="auth__input" />
+            <label for="regConfirmPassword" class="auth__label">Подтвердите пароль:</label>
+            <input type="password" id="regConfirmPassword" required class="auth__input" />
+            <button type="submit" class="auth__button">Зарегистрироваться</button>
+          </form>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
+    </footer>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+        // Простая обработка формы для входа
+        alert('Попытка входа с почтой: ' + email);
+      });
+
+      document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var username = document.getElementById('regUsername').value;
+        var email = document.getElementById('regEmail').value;
+        var password = document.getElementById('regPassword').value;
+        var confirmPassword = document.getElementById('regConfirmPassword').value;
+        if (password !== confirmPassword) {
+          alert('Пароли не совпадают');
+          return;
+        }
+        // Простая обработка формы для регистрации
+        alert('Регистрация пользователя: ' + username);
+      });
+
+      document.getElementById('openLogin').addEventListener('click', function () {
+        document.getElementById('loginModal').style.display = 'block';
+      });
+
+      document.getElementById('closeLogin').addEventListener('click', function () {
+        document.getElementById('loginModal').style.display = 'none';
+      });
+
+      window.addEventListener('click', function (event) {
+        if (event.target == document.getElementById('loginModal')) {
+          document.getElementById('loginModal').
