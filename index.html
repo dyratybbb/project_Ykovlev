@@ -94,7 +94,6 @@
         overflow-x: hidden;
       }
 
-      /* Стили для хедера */
       .header {
         background-color: var(--primary-color);
         color: white;
@@ -227,7 +226,6 @@
         transform: translateY(1px);
       }
 
-      /* Бургер-меню для мобильных устройств */
       .header__burger {
         display: none;
         flex-direction: column;
@@ -289,7 +287,7 @@
         background-color: var(--accent-color);
       }
 
-      /* Загрузка файлов */
+      /*Загрузка файлов*/
       .file-upload {
         background-color: var(--bg-light);
         padding: var(--spacing-lg);
@@ -531,14 +529,13 @@
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
+      <p class="footer__copyright">© 2025 Облачное Хранение. Все права защищены.</p>
     </footer>
     <script>
       document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault();
         var email = document.getElementById('loginEmail').value;
         var password = document.getElementById('loginPassword').value;
-        // Простая обработка формы для входа
         alert('Попытка входа с почтой: ' + email);
       });
 
@@ -552,7 +549,6 @@
           alert('Пароли не совпадают');
           return;
         }
-        // Простая обработка формы для регистрации
         alert('Регистрация пользователя: ' + username);
       });
 
