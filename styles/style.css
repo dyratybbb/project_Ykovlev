@@ -1,4 +1,14 @@
- @font-face {
+/* Подключение шрифтов */
+@import "fonts.css";
+/* Подключение основных стилей */
+@import "base.css";
+/* Подключение стилей относящихся к header */
+@import "header.css";
+/* Подключение стилей относящихся к footer */
+@import "footer.css";
+/* Подключение стилей относящихся к main */
+@import "main.css";
+@font-face {
         font-family: 'Montserrat';
         src: url('styles/fonts/Montserrat-Regular.ttf') format('truetype');
         font-weight: normal;
