@@ -1,7 +1,2 @@
-@font-face {
-    font-family: "Kanit-Black)";
-    src: url("../fonts/Montserrat-Regular.ttf");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
