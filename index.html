@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Облачное Хранение - CloudSpace</title>
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/fonts.css">
-</head>
-<body class="page">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Облачное Хранение</title>
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body class="page">
     <header class="header">
-        <div class="header-container">
-            <div class="header-logo">
-                <img src="images/logo.png" alt="CloudSpace Logo" class="header-logo-image">
-                <h1 class="header-title">CloudSpace</h1>
-            </div>
-            <nav class="header-nav">
-                <ul class="header-nav-list">
-                    <li class="header-nav-item"><a href="#" class="header-nav-link">Тарифы</a></li>
-                    <li class="header-nav-item"><a href="#" class="header-nav-link">О нас</a></li>
-                    <li class="header-nav-item"><a href="#" class="header-nav-link">Поддержка</a></li>
-                    <li class="header-nav-item"><a href="#" class="header-nav-link">Войти</a></li>
-                    <li class="header-nav-item"><a href="#" class="header-nav-link">Регистрация</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="header__logo">
+        <img src="images/free-icon-cloud-storage-4836221.png" alt="Логотип Облачного Хранения" class="header__logo-image" height=100 width=100/> 
+        <h1 class="header__title">Облачное Хранение</h1>
+        <nav>
+          <ul>
+          <li><a href="#">Kypc</a></li>
+            <li><a href="#">O Hac</a></li> 
+            <li><a href="#">Блor</a></li> 
+            <li><a href="#">Eшe</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
-
     <main class="main">
-        <div class="main-container">
-            <section class="hero">
-                <h2 class="hero-title">Ваши файлы в безопасности, где бы вы ни были.</h2>
-                <p class="hero-text">Надежное облачное хранилище для личных и рабочих данных.</p>
-                <a href="#" class="hero-button">Начать бесплатно</a>
-            </section>
-
-            <section class="features">
-                <h2 class="features-title">Основные возможности</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <img src="images/icon-security.png" alt="Безопасность" class="feature-icon">
-                        <h3 class="feature-title">Безопасность</h3>
-                        <p class="feature-text">Шифрование данных и защита от несанкционированного доступа.</p>
-                    </div>
-                    <div class="feature-item">
-                        <img src="images/icon-sync.png" alt="Синхронизация" class="feature-icon">
-                        <h3 class="feature-title">Синхронизация</h3>
-                        <p class="feature-text">Автоматическая синхронизация файлов на всех ваших устройствах.</p>
-                    </div>
-                    <div class="feature-item">
-                        <img src="images/icon-share.png" alt="Совместный доступ" class="feature-icon">
-                        <h3 class="feature-title">Совместный доступ</h3>
-                        <p class="feature-text">Легкий обмен файлами с друзьями и коллегами.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="pricing">
-                <h2 class="pricing-title">Тарифные планы</h2>
-                <!-- Pricing table content -->
-            </section>
-        </div>
+      <section class="auth auth--login">
+        <h2 class="auth__title">Вход</h2>
+        <form id="loginForm" class="auth__form">
+          <label for="loginEmail" class="auth__label">Электронная почта:</label><br />
+          <input type="email" id="loginEmail" required class="auth__input" /><br />
+          <label for="loginPassword" class="auth__label">Пароль:</label><br />
+          <input type="password" id="loginPassword" required class="auth__input" /><br />
+          <button type="submit" class="auth__button">Войти</button>
+        </form>
+      </section>
+      <section class="auth auth--register">
+        <h2 class="auth__title">Регистрация</h2>
+        <form id="registerForm" class="auth__form">
+          <label for="regUsername" class="auth__label">Имя пользователя:</label><br />
+          <input type="text" id="regUsername" required class="auth__input" /><br />
+          <label for="regEmail" class="auth__label">Электронная почта:</label><br />
+          <input type="email" id="regEmail" required class="auth__input" /><br />
+          <label for="regPassword" class="auth__label">Пароль:</label><br />
+          <input type="password" id="regPassword" required class="auth__input" /><br />
+          <label for="regConfirmPassword" class="auth__label">Подтвердите пароль:</label><br />
+          <input type="password" id="regConfirmPassword" required class="auth__input" /><br />
+          <button type="submit" class="auth__button">Зарегистрироваться</button>
+        </form>
+      </section>
     </main>
-
     <footer class="footer">
-        <div class="footer-container">
-            <p class="footer-copyright">&copy; 2024 CloudSpace. Все права защищены.</p>
-        </div>
+      <p class="footer__copyright">© 2023 Облачное Хранение. Все права защищены.</p>
     </footer>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+        // Простая обработка формы для входа
+        alert('Попытка входа с почтой: ' + email);
+      });
 
-    <script src="js/script.js"></script>
-</body>
+      document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var username = document.getElementById('regUsername').value;
+        var email = document.getElementById('regEmail').value;
+        var password = document.getElementById('regPassword').value;
+        var confirmPassword = document.getElementById('regConfirmPassword').value;
+        if (password !== confirmPassword) {
+          alert('Пароли не совпадают');
+          return;
+        }
+        // Простая обработка формы для регистрации
+        alert('Регистрация пользователя: ' + username); 
+      });
+    </script>
+  </body>
 </html>
