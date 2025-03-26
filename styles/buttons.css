@@ -1,1 +1,54 @@
+/* Стили кнопок */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
 
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.btn-secondary:hover {
+    background-color: #27ae60;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-login {
+    background-color: transparent;
+    color: var(--dark-color);
+    margin-right: 10px;
+}
+
+.btn-login:hover {
+    color: var(--primary-color);
+}
+
+.btn-large {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}
