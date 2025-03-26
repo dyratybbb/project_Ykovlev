@@ -8,3 +8,11 @@
 @import "footer.css";
 /* Подключение стилей относящихся к main */
 @import "main.css";
+@import "buttons.css";
+@import "cards.css";
+@import "grid.css";
+@import "hero.css";
+@import "services.css";
+@import "pricing.css";
+@import "about.css";
+@import "contact.css";
