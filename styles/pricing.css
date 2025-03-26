@@ -1,1 +1,5 @@
-
+/* Стили раздела тарифов */
+.pricing {
+    padding: 100px 0;
+    background-color: #f9f9f9;
+}
