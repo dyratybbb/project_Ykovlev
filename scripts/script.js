@@ -136,3 +136,49 @@ pricingPlans.forEach(plan => {
 
     pricingGrid.appendChild(pricingCard);
 });
+// Функция для загрузки и отображения услуг
+function loadServices() {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const servicesGrid = document.querySelector('.services-grid');
+            data.services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.classList.add('service-card');
+                serviceCard.innerHTML = `
+                    <div class="service-icon">
+                        <i class="${service.icon}"></i>
+                    </div>
+                    <h3>${service.title}</h3>
+                    <p>${service.description}</p>
+                `;
+                servicesGrid.appendChild(serviceCard);
+            });
+        })
+        .catch(error => console.error('Ошибка при загрузке услуг:', error));
+}
+
+// Функция для загрузки и отображения тарифов
+function loadPricingPlans() {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const pricingGrid = document.querySelector('.pricing-grid');
+            data.pricingPlans.forEach(plan => {
+                const pricingCard = document.createElement('div');
+                pricingCard.classList.add('pricing-card');
+
+                if (plan.popular) {
+                    pricingCard.classList.add('popular');
+                    pricingCard.innerHTML = '<div class="popular-badge">Популярный</div>';
+                }
+
+                pricingCard.innerHTML += `
+                    <h3>${plan.title}</h3>
+                    <div class="price">
+                        <span class="amount">${plan.amount}</span>
+                        <span class="period">${plan.period}</span>
+                    </div>
+                    <ul class="features">
+                        ${plan.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
+                    </ul
