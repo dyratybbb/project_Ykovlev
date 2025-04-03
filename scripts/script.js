@@ -1,5 +1,5 @@
 'use strict'
 document.addEventListener("DOMContentLoaded", () => {
-    console.log('Скрипт отработал корректно')
+    console.log('Спасибо за ваше сообщение!')
 });
 
