@@ -23,10 +23,42 @@
                        <li><a href="#contact">Контакты</a></li> 
                    </ul> 
                </nav> 
-            <div class="auth-buttons">
-                <a href="#" class="btn btn-login">Вход</a>
-                <a href="#" class="btn btn-primary">Регистрация</a>
+           <!-- Модальное окно для входа -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeLogin">&times;</span>
+        <h2>Вход</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="email" placeholder="Ваш email" required>
             </div>
+            <div class="form-group">
+                <input type="password" placeholder="Ваш пароль" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+    </div>
+</div>
+
+<!-- Модальное окно для регистрации -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeRegister">&times;</span>
+        <h2>Регистрация</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <input type="text" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Ваш email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Ваш пароль" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
         </div>
     </header>
     <section id="home" class="hero">
