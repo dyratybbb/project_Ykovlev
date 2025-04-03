@@ -16,3 +16,17 @@ window.addEventListener('scroll', () => {
         nav.classList.remove('fixed');
     }
 });
+// Получаем все изображения с классом 'hover-image'
+const images = document.querySelectorAll('.hover-image');
+
+images.forEach(image => {
+    const description = image.nextElementSibling; // Получаем следующий элемент (описание)
+
+    image.addEventListener('mouseover', () => {
+        description.style.display = 'block'; // Показываем описание
+    });
+
+    image.addEventListener('mouseout', () => {
+        description.style.display = 'none'; // Скрываем описание
+    });
+});
