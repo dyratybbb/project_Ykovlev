@@ -136,3 +136,32 @@ pricingPlans.forEach(plan => {
 
     pricingGrid.appendChild(pricingCard);
 });
+// Массив с элементами навигации
+const navItems = [
+    { text: 'Главная', href: '#home' },
+    { text: 'Услуги', href: '#services' },
+    { text: 'Тарифы', href: '#pricing' },
+    { text: 'О нас', href: '#about' },
+    { text: 'Контакты', href: '#contact' }
+];
+
+// Создаем элемент ul
+const navList = document.createElement('ul');
+
+// Перебираем массив и создаем элементы li и a
+navItems.forEach(item => {
+    const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = item.href; // Устанавливаем href
+    link.textContent = item.text; // Устанавливаем текст ссылки
+    
+    listItem.appendChild(link); // Добавляем ссылку в элемент li
+    navList.appendChild(listItem); // Добавляем элемент li в ul
+});
+
+// Предполагаем, что у вас есть элемент nav, куда вы хотите добавить список
+const nav = document.querySelector('nav'); // Находим элемент nav
+nav.appendChild(navList); // Добавляем ul в nav
+document.addEventListener('DOMContentLoaded', () => {
+    // Вставьте код для создания списка навигации здесь
+});
