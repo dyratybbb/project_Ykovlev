@@ -62,3 +62,35 @@
         gap: 30px;
     }
 }
+
+.about-image {
+    position: relative;
+    display: inline-block; /* Чтобы описание позиционировалось относительно изображения */
+}
+
+.image-description {
+    display: none; /* Скрываем описание по умолчанию */
+    position: absolute;
+    bottom: 100%; /* Позиционируем над изображением */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap; /* Чтобы текст не переносился */
+}
+.hover-image:hover + .image-description {
+    display: block; /* Показываем описание при наведении на изображение */
+}left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap; /* Чтобы текст не переносился */
+}
+
+.hover-image:hover + .image-description {
+    display: block; /* Показываем описание при наведении на изображение */
+}
