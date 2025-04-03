@@ -69,3 +69,70 @@ services.forEach(service => {
 
     servicesGrid.appendChild(serviceCard);
 });
+const pricingPlans = [
+    {
+        title: 'Стартовый',
+        amount: '850₽',
+        period: '/месяц',
+        features: [
+            '10 ГБ хранилища',
+            '1 виртуальный CPU',
+            '2 ГБ RAM',
+            'Базовая поддержка'
+        ],
+        popular: false
+    },
+    {
+        title: 'Бизнес',
+        amount: '2500₽',
+        period: '/месяц',
+        features: [
+            '50 ГБ хранилища',
+            '4 виртуальных CPU',
+            '8 ГБ RAM',
+            'Приоритетная поддержка',
+            'Резервное копирование'
+        ],
+        popular: true
+    },
+    {
+        title: 'Премиум',
+        amount: '8500₽',
+        period: '/месяц',
+        features: [
+            '200 ГБ хранилища',
+            '8 виртуальных CPU',
+            '16 ГБ RAM',
+            '24/7 поддержка',
+            'Автомасштабирование',
+            'DDoS защита'
+        ],
+        popular: false
+         }
+];
+
+const pricingGrid = document.querySelector('.pricing-grid');
+
+pricingPlans.forEach(plan => {
+    const pricingCard = document.createElement('div');
+    pricingCard.classList.add('pricing-card');
+
+    if (plan.popular) {
+        pricingCard.classList.add('popular');
+        pricingCard.innerHTML = '<div class="popular-badge">Популярный</div>';
+    }
+
+    pricingCard.innerHTML += `
+        <h3>${plan.title}</h3>
+        <div class="price">
+            <span class="amount">${plan.amount}</span>
+             <span class="period">${plan.period}</span>
+        </div>
+        <ul class="features">
+            ${plan.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
+        </ul>
+        <a href="#" class="btn btn-outline">Выбрать</a>
+    `;
+
+    pricingGrid.appendChild(pricingCard);
+});
