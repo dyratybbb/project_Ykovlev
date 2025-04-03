@@ -198,3 +198,6 @@ header.appendChild(container);
 
 // Добавляем заголовок в body
 document.body.prepend(header);
+document.addEventListener('DOMContentLoaded', () => {
+    // Вставьте код заголовка здесь
+});
