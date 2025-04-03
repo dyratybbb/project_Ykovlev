@@ -136,3 +136,65 @@ pricingPlans.forEach(plan => {
 
     pricingGrid.appendChild(pricingCard);
 });
+// Создаем элементы заголовка
+const header = document.createElement('header');
+const container = document.createElement('div');
+container.classList.add('container');
+
+// Логотип
+const logo = document.createElement('div');
+logo.classList.add('logo');
+logo.innerHTML = '<i class="fas fa-cloud"></i><span>CloudTech</span>';
+
+// Навигация
+const nav = document.createElement('nav');
+const navList = document.createElement('ul');
+
+// Массив с элементами навигации
+const navItems = [
+    { text: 'Главная', href: '#home' },
+    { text: 'Услуги', href: '#services' },
+    { text: 'Тарифы', href: '#pricing' },
+    { text: 'О нас', href: '#about' },
+    { text: 'Контакты', href: '#contact' }
+];
+
+// Перебираем массив и создаем элементы li и a
+navItems.forEach(item => {
+    const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    
+    link.href = item.href; // Устанавливаем href
+    link.textContent = item.text; // Устанавливаем текст ссылки
+    
+    listItem.appendChild(link); // Добавляем ссылку в элемент li
+    navList.appendChild(listItem); // Добавляем элемент li в ul
+});
+
+nav.appendChild(navList); // Добавляем ul в nav
+
+// Кнопки аутентификации
+const authButtons = document.createElement('div');
+authButtons.classList.add('auth-buttons');
+
+const loginButton = document.createElement('a');
+loginButton.href = '#';
+loginButton.classList.add('btn', 'btn-login');
+loginButton.textContent = 'Вход';
+
+const registerButton = document.createElement('a');
+registerButton.href = '#';
+registerButton.classList.add('btn', 'btn-primary');
+registerButton.textContent = 'Регистрация';
+
+authButtons.appendChild(loginButton);
+authButtons.appendChild(registerButton);
+
+// Собираем все элементы вместе
+container.appendChild(logo);
+container.appendChild(nav);
+container.appendChild(authButtons);
+header.appendChild(container);
+
+// Добавляем заголовок в body
+document.body.prepend(header);
