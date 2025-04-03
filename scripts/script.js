@@ -158,27 +158,33 @@ function loadServices() {
         .catch(error => console.error('Ошибка при загрузке услуг:', error));
 }
 
-// Функция для загрузки и отображения тарифов
-function loadPricingPlans() {
+// Предзагрузчик страницы
+document.addEventListener("DOMContentLoaded", function() {
+    const loader = document.createElement("div");
+    loader.innerText = "Загрузка...";
+    document.body.appendChild(loader);
+
+    // Удаляем предзагрузчик через 2 секунды
+    setTimeout(() => {
+        loader.remove();
+        fetchData();
+    }, 2000);
+});
+
+// Функция для получения данных
+function fetchData() {
     fetch('data.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Сеть не в порядке');
+            }
+            return response.json();
+        })
         .then(data => {
-            const pricingGrid = document.querySelector('.pricing-grid');
-            data.pricingPlans.forEach(plan => {
-                const pricingCard = document.createElement('div');
-                pricingCard.classList.add('pricing-card');
-
-                if (plan.popular) {
-                    pricingCard.classList.add('popular');
-                    pricingCard.innerHTML = '<div class="popular-badge">Популярный</div>';
-                }
-
-                pricingCard.innerHTML += `
-                    <h3>${plan.title}</h3>
-                    <div class="price">
-                        <span class="amount">${plan.amount}</span>
-                        <span class="period">${plan.period}</span>
-                    </div>
-                    <ul class="features">
-                        ${plan.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
-                    </ul
+            console.log(data);
+            // Здесь можно обработать данные и отобразить их на странице
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+}
