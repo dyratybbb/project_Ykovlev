@@ -95,27 +95,30 @@ function fetchData() {
         });
 }
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация Swiper для услуг
-    const servicesSwiper = new Swiper('.services-swiper', {
+    new Swiper('.services-swiper', {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
         pagination: {
-            el: '.services-swiper .swiper-pagination',
+            el: '.swiper-pagination',
             clickable: true,
         },
-        navigation: {
-            nextEl: '.services-swiper .swiper-button-next',
-            prevEl: '.services-swiper .swiper-button-prev',
-        },
         breakpoints: {
-            768: {
+            640: {
                 slidesPerView: 2,
             },
-            1024: {
+            992: {
                 slidesPerView: 3,
+            },
+            1200: {
+                slidesPerView: 4,
             }
         }
     });
+});
 
     // Инициализация Swiper для тарифов
     const pricingSwiper = new Swiper('.pricing-swiper', {
