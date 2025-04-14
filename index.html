@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="scripts/script.js"></script>
 </head>
 <body>
     <header>
@@ -227,22 +229,21 @@
                     </div>
                 </div>
                 
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Ваше имя" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Ваш email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Тема">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Отправить сообщение</button>
-                </form>
-            </div>
+                <form id="contactForm" class="contact-form">
+    <div class="form-group">
+        <input type="text" id="contactName" placeholder="Ваше имя" required>
+    </div>
+    <div class="form-group">
+        <input type="email" id="contactEmail" placeholder="Ваш email" required>
+    </div>
+    <div class="form-group">
+        <input type="text" id="contactSubject" placeholder="Тема">
+    </div>
+    <div class="form-group">
+        <textarea id="contactMessage" placeholder="Ваше сообщение" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+</form>
         </div>
     </section>
 
@@ -278,21 +279,7 @@
                         <li><a href="#">Контакты</a></li>
                     </ul>
                 </div>
-                <form id="contactForm" class="contact-form">
-    <div class="form-group">
-        <input type="text" id="contactName" placeholder="Ваше имя" required>
-    </div>
-    <div class="form-group">
-        <input type="email" id="contactEmail" placeholder="Ваш email" required>
-    </div>
-    <div class="form-group">
-        <input type="text" id="contactSubject" placeholder="Тема">
-    </div>
-    <div class="form-group">
-        <textarea id="contactMessage" placeholder="Ваше сообщение" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Отправить сообщение</button>
-</form>
+                
                 <div class="footer-col">
                     <h4>Поддержка</h4>
                     <ul>
