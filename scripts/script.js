@@ -188,3 +188,95 @@ function fetchData() {
             console.error('Ошибка:', error);
         });
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация Swiper для услуг
+    const servicesSwiper = new Swiper('.services-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+            el: '.services-swiper .swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.services-swiper .swiper-button-next',
+            prevEl: '.services-swiper .swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            }
+        }
+    });
+
+    // Инициализация Swiper для тарифов
+    const pricingSwiper = new Swiper('.pricing-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+            el: '.pricing-swiper .swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            }
+        }
+    });
+
+    // Работа с LocalStorage для формы контактов
+    const contactForm = document.getElementById('contactForm');
+    
+    // Загружаем сохраненные данные при загрузке страницы
+    if (localStorage.getItem('contactFormData')) {
+        const savedData = JSON.parse(localStorage.getItem('contactFormData'));
+        document.getElementById('contactName').value = savedData.name || '';
+        document.getElementById('contactEmail').value = savedData.email || '';
+        document.getElementById('contactSubject').value = savedData.subject || '';
+        document.getElementById('contactMessage').value = savedData.message || '';
+    }
+    
+    // Сохраняем данные при изменении полей формы
+    contactForm.addEventListener('input', function() {
+        const formData = {
+            name: document.getElementById('contactName').value,
+            email: document.getElementById('contactEmail').value,
+            subject: document.getElementById('contactSubject').value,
+            message: document.getElementById('contactMessage').value
+        };
+        localStorage.setItem('contactFormData', JSON.stringify(formData));
+    });
+    
+    // Обработка отправки формы
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Здесь можно добавить код для отправки формы на сервер
+        
+        // Очищаем форму и LocalStorage после отправки
+        contactForm.reset();
+        localStorage.removeItem('contactFormData');
+        
+        // Показываем сообщение об успешной отправке
+        alert('Ваше сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.');
+    });
+    
+    // Добавляем скрипт для кнопок входа/регистрации
+    const loginBtn = document.querySelector('.btn-login');
+    const registerBtn = document.querySelector('.btn-primary');
+    
+    loginBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Форма входа будет реализована позже');
+    });
+    
+    registerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Форма регистрации будет реализована позже');
+    });
+});
