@@ -16,149 +16,114 @@
 @import "pricing.css";
 @import "about.css";
 @import "contact.css";
-/* Основные стили для карусели услуг */
-.services-swiper {
-    padding: 40px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.swiper-wrapper {
-    align-items: stretch; /* Чтобы карточки были одинаковой высоты */
-}
-
-.service-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Swiper стили */
+.swiper-container {
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #4361ee, #3a0ca3);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    padding: 20px 0;
 }
 
-.service-card:hover::before {
-    opacity: 1;
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стили для карточек услуг */
+.service-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+    height: auto;
 }
 
 .service-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #4361ee, #3a0ca3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    color: white;
-    font-size: 28px;
-    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    font-size: 3rem;
+    color: #4a6bff;
+    margin-bottom: 20px;
 }
 
 .service-card h3 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #2b2d42;
+    margin-bottom: 15px;
+    color: #333;
 }
 
 .service-card p {
-    color: #6c757d;
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 24px;
-    flex-grow: 1;
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.btn-secondary {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #f8f9fa;
-    color: #4361ee;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(67, 97, 238, 0.2);
-    align-self: flex-start;
-}
-
-.btn-secondary:hover {
-    background: #4361ee;
-    color: white;
-    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-}
-
-/* Навигация Swiper */
-.services-swiper .swiper-button-next,
-.services-swiper .swiper-button-prev {
-    width: 48px;
-    height: 48px;
-    background: white;
-    border-radius: 50%;
+/* Стили для карточек тарифов */
+.pricing-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    color: #4361ee;
-    transition: all 0.3s ease;
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
 }
 
-.services-swiper .swiper-button-next:hover,
-.services-swiper .swiper-button-prev:hover {
-    background: #4361ee;
+.pricing-card.featured {
+    border: 2px solid #4a6bff;
+}
+
+.popular-tag {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #4a6bff;
     color: white;
-}
-
-.services-swiper .swiper-button-next::after,
-.services-swiper .swiper-button-prev::after {
-    font-size: 18px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
-.services-swiper .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background: #dee2e6;
-    opacity: 1;
+.pricing-card h3 {
+    margin-bottom: 15px;
+    color: #333;
 }
 
-.services-swiper .swiper-pagination-bullet-active {
-    background: #4361ee;
+.pricing-card .price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4a6bff;
+    margin-bottom: 20px;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .service-card {
-        padding: 24px;
-    }
-    
-    .service-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-    }
-    
-    .services-swiper .swiper-button-next,
-    .services-swiper .swiper-button-prev {
-        display: none;
-    }
+.pricing-card .price span {
+    font-size: 1rem;
+    color: #666;
+    font-weight: normal;
+}
+
+.pricing-card .features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.pricing-card .features li {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.pricing-card .features i {
+    color: #4a6bff;
+    margin-right: 8px;
+}
+
+/* Навигационные кнопки Swiper */
+.swiper-button-next, .swiper-button-prev {
+    color: #4a6bff;
+}
+
+.swiper-pagination-bullet-active {
+    background: #4a6bff;
 }
