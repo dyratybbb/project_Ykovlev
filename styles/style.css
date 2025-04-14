@@ -16,16 +16,12 @@
 @import "pricing.css";
 @import "about.css";
 @import "contact.css";
-/* Swiper стили */
-.swiper-container {
-    width: 100%;
-    padding: 20px 0;
-}
-
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Общие стили для карусели услуг */
+.services-swiper {
+    padding: 30px 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
 }
 
 /* Стили для карточек услуг */
@@ -122,74 +118,32 @@
     font-weight: bold;
 }
 
-/* Стили для карточек тарифов */
-.pricing-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 320px;
-    margin: 0 auto;
-    position: relative;
+/* Пагинация Swiper */
+.services-swiper .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #d1d3e2;
+    opacity: 1;
 }
 
-.pricing-card.featured {
-    border: 2px solid #4a6bff;
+.services-swiper .swiper-pagination-bullet-active {
+    background: #4e73df;
 }
 
-.popular-tag {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    background: #4a6bff;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.pricing-card h3 {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.pricing-card .price {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #4a6bff;
-    margin-bottom: 20px;
-}
-
-.pricing-card .price span {
-    font-size: 1rem;
-    color: #666;
-    font-weight: normal;
-}
-
-.pricing-card .features {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.pricing-card .features li {
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.pricing-card .features i {
-    color: #4a6bff;
-    margin-right: 8px;
-}
-
-/* Навигационные кнопки Swiper */
-.swiper-button-next, .swiper-button-prev {
-    color: #4a6bff;
-}
-
-.swiper-pagination-bullet-active {
-    background: #4a6bff;
+/* Адаптивность */
+@media (max-width: 768px) {
+    .service-card {
+        padding: 20px 15px;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .services-swiper .swiper-button-next,
+    .services-swiper .swiper-button-prev {
+        display: none;
+    }
 }
