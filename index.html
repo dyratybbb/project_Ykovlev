@@ -6,6 +6,8 @@
     <title>Облачные решения для бизнеса</title>
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
@@ -50,6 +52,64 @@
             <h2 class="section-title">Наши услуги</h2>
             <p class="section-subtitle">Мы предлагаем полный спектр облачных решений для любых потребностей</p>
             
+             <!-- Swiper карусель -->
+        <div class="swiper-container services-swiper">
+            <div class="swiper-wrapper">
+                <!-- Карточка 1 -->
+                <div class="swiper-slide service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Виртуальные серверы</h3>
+                    <p>Масштабируемые виртуальные серверы с высокой производительностью и гибкой конфигурацией.</p>
+                    <a href="#" class="btn btn-secondary">Подробнее</a>
+                </div>
+                
+                <!-- Карточка 2 -->
+                <div class="swiper-slide service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Облачное хранилище</h3>
+                    <p>Надежное и безопасное хранилище для ваших данных с возможностью резервного копирования.</p>
+                    <a href="#" class="btn btn-secondary">Подробнее</a>
+                </div>
+                
+                <!-- Карточка 3 -->
+                <div class="swiper-slide service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Безопасность</h3>
+                    <p>Комплексные решения для защиты ваших данных и приложений от угроз.</p>
+                    <a href="#" class="btn btn-secondary">Подробнее</a>
+                </div>
+                
+                <!-- Карточка 4 -->
+                <div class="swiper-slide service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Гибридные решения</h3>
+                    <p>Интеграция облачных и локальных решений для оптимальной работы вашего бизнеса.</p>
+                    <a href="#" class="btn btn-secondary">Подробнее</a>
+                </div>
+                
+                <!-- Карточка 5 -->
+                <div class="swiper-slide service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Резервное копирование</h3>
+                    <p>Автоматическое резервное копирование данных с возможностью восстановления в любой момент.</p>
+                    <a href="#" class="btn btn-secondary">Подробнее</a>
+                </div>
+            </div>
+            <!-- Добавляем пагинацию -->
+            <div class="swiper-pagination"></div>
+            <!-- Добавляем навигационные кнопки -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
             <div class="services-grid">
             </div>
         </div>
@@ -60,6 +120,56 @@
             <h2 class="section-title">Тарифные планы</h2>
             <p class="section-subtitle">Выберите подходящий план для вашего бизнеса</p>
           <div class="pricing-grid">
+              <div class="swiper-container pricing-swiper">
+            <div class="swiper-wrapper">
+                <!-- Тариф 1 -->
+                <div class="swiper-slide">
+                    <div class="pricing-card">
+                        <h3>Стартовый</h3>
+                        <div class="price">990 ₽<span>/месяц</span></div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 10 ГБ хранилища</li>
+                            <li><i class="fas fa-check"></i> 1 виртуальный сервер</li>
+                            <li><i class="fas fa-check"></i> Базовая безопасность</li>
+                            <li><i class="fas fa-check"></i> Поддержка 24/7</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Выбрать</a>
+                    </div>
+                </div>
+                
+                <!-- Тариф 2 -->
+                <div class="swiper-slide">
+                    <div class="pricing-card featured">
+                        <div class="popular-tag">Популярный</div>
+                        <h3>Бизнес</h3>
+                        <div class="price">2 990 ₽<span>/месяц</span></div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 50 ГБ хранилища</li>
+                            <li><i class="fas fa-check"></i> 3 виртуальных сервера</li>
+                            <li><i class="fas fa-check"></i> Расширенная безопасность</li>
+                            <li><i class="fas fa-check"></i> Приоритетная поддержка</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Выбрать</a>
+                    </div>
+                </div>
+                
+                <!-- Тариф 3 -->
+                <div class="swiper-slide">
+                    <div class="pricing-card">
+                        <h3>Премиум</h3>
+                        <div class="price">5 990 ₽<span>/месяц</span></div>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 200 ГБ хранилища</li>
+                            <li><i class="fas fa-check"></i> 10 виртуальных серверов</li>
+                            <li><i class="fas fa-check"></i> Максимальная безопасность</li>
+                            <li><i class="fas fa-check"></i> Персональный менеджер</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Выбрать</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Пагинация -->
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>
