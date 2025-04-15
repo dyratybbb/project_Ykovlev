@@ -64,17 +64,53 @@ function loadServices() {
         .catch(error => console.error('Ошибка при загрузке услуг:', error));
 }
 
-// Предзагрузчик страницы
-document.addEventListener("DOMContentLoaded", function() {
-    const loader = document.createElement("div");
-    loader.innerText = "Загрузка...";
-    document.body.appendChild(loader);
+document.addEventListener("DOMContentLoaded", function () {
+    const preloader = document.getElementById("preloader");
+    const container = document.getElementById("data-container");
 
-    // Удаляем предзагрузчик через 2 секунды
-    setTimeout(() => {
-        loader.remove();
-        fetchData();
-    }, 2000);
+    const hidePreloader = () => {
+        if (preloader) {
+            preloader.style.display = "none";
+        }
+    };
+
+    const getData = async () => {
+        if (!container) {
+            console.error("Контейнер 'data-container' не найден.");
+            hidePreloader();
+            return;
+        }
+
+        try {
+            const response = await fetch("/data/data.json");
+
+            if (!response.ok) {
+                throw new Error(`Ошибка HTTP: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data)) {
+                throw new Error("Ожидался массив данных.");
+            }
+
+            container.innerHTML = ""; // очистим "Загрузка данных..."
+
+            data.forEach((item) => {
+                const div = document.createElement("div");
+                div.className = "data-item";
+                div.innerHTML = `<strong>${item.name}</strong>`;
+                container.appendChild(div);
+            });
+        } catch (error) {
+            console.error("Ошибка при загрузке данных:", error);
+            container.innerHTML = `<p class="error">Не удалось загрузить данные.</p>`;
+        } finally {
+            hidePreloader(); // скрыть прелоадер в любом случае
+        }
+    };
+
+    getData();
 });
 
 // Функция для получения данных
