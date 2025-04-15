@@ -1,3 +1,33 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const preloader = document.getElementById('preloader');
+
+  // Задержка перед скрытием (опционально, для демонстрации предзагрузчика)
+  // Вы можете убрать setTimeout, если предзагрузчик должен исчезать сразу после загрузки DOM
+  setTimeout(function() {
+    preloader.classList.add('hidden');
+
+    // После того, как предзагрузчик скрылся и анимация закончилась,
+    // можно удалить его из DOM, чтобы не мешал взаимодействию (опционально)
+    preloader.addEventListener('transitionend', function() {
+      if (preloader.classList.contains('hidden')) {
+        preloader.style.display = 'none'; // Или: preloader.remove();
+      }
+    });
+  }, 500); // Задержка в 500 миллисекунд (0.5 секунды) - можно изменить или убрать
+});
+
+// Ваш остальной код script.js (логика ToDo приложения) пойдет ниже
+// ... (остальной код из вашего script.js, который вы предоставили ранее) ...
+
+document.addEventListener('DOMContentLoaded', function() { // Убедитесь, что этот обработчик не дублируется, если он уже есть в вашем script.js
+    const taskInput = document.getElementById('taskInput');
+    const addTaskButton = document.getElementById('addTaskButton');
+    const taskList = document.getElementById('taskList');
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const clearCompletedButton = document.getElementById('clearCompletedButton');
+
+    // ... (остальной код ToDo приложения) ...
+});
 document.addEventListener('DOMContentLoaded', function() {
     const taskInput = document.getElementById('taskInput');
     const addTaskButton = document.getElementById('addTaskButton');
