@@ -1,3 +1,35 @@
+let chart; // 📌 глобально объявляем
+
+am5.ready(function () {
+  let root = am5.Root.new("chartdiv");
+
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+
+  chart = root.container.children.push(
+    am5xy.XYChart.new(root, {
+      focusable: true,
+      panX: true,
+      panY: true,
+      wheelX: "panX",
+      wheelY: "zoomX",
+      pinchZoomX: true
+    })
+  );
+
+  // Добавляем оси, серии и т.д.
+
+  // Загрузка данных
+  fetch("/data/data.json")
+    .then(response => response.json())
+    .then(data => {
+      chart.data = data; // 📌 ЭТА СТРОКА — 235
+    })
+    .catch(error => {
+      console.error("Ошибка загрузки данных:", error);
+    });
+});
 'use strict'
 document.addEventListener("DOMContentLoaded", () => {
     console.log('Спасибо за ваше сообщение!')
