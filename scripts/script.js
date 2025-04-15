@@ -71,17 +71,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const hidePreloader = () => {
         if (preloader) {
             preloader.style.display = "none";
+            console.log("✅ Прелоадер скрыт");
         }
     };
 
     const getData = async () => {
         if (!container) {
-            console.error("Контейнер 'data-container' не найден.");
+            console.error("❌ Контейнер 'data-container' не найден.");
             hidePreloader();
             return;
         }
 
         try {
+            console.log("📡 Загружаем данные...");
             const response = await fetch("/data/data.json");
 
             if (!response.ok) {
@@ -89,13 +91,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const data = await response.json();
+            console.log("📦 Данные загружены:", data);
 
             if (!Array.isArray(data)) {
                 throw new Error("Ожидался массив данных.");
             }
 
-            container.innerHTML = ""; // очистим "Загрузка данных..."
-
+            container.innerHTML = ""; // очистим "Загрузка..."
             data.forEach((item) => {
                 const div = document.createElement("div");
                 div.className = "data-item";
@@ -103,10 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 container.appendChild(div);
             });
         } catch (error) {
-            console.error("Ошибка при загрузке данных:", error);
+            console.error("❌ Ошибка при загрузке данных:", error);
             container.innerHTML = `<p class="error">Не удалось загрузить данные.</p>`;
         } finally {
-            hidePreloader(); // скрыть прелоадер в любом случае
+            hidePreloader();
         }
     };
 
