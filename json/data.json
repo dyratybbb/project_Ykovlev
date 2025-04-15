@@ -23,3 +23,8 @@
   ],
   "pricing": "Тарифные планы будут доступны позже."
 }
+const data = [
+  { name: "Test 1" },
+  { name: "Test 2" },
+  { name: "Test 3" }
+];
