@@ -1,22 +1,3 @@
-let chart; // 📌 глобально объявляем
-
-am5.ready(function () {
-  let root = am5.Root.new("chartdiv");
-
-  root.setThemes([
-    am5themes_Animated.new(root)
-  ]);
-
-  chart = root.container.children.push(
-    am5xy.XYChart.new(root, {
-      focusable: true,
-      panX: true,
-      panY: true,
-      wheelX: "panX",
-      wheelY: "zoomX",
-      pinchZoomX: true
-    })
-  );
 
   // Добавляем оси, серии и т.д.
 
