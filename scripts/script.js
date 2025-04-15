@@ -68,20 +68,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const preloader = document.getElementById("preloader");
     const container = document.getElementById("data-container");
 
+    document.addEventListener("DOMContentLoaded", function () {
+    const preloader = document.getElementById("preloader");
+    const container = document.getElementById("data-container");
+
     const hidePreloader = () => {
         if (preloader) {
             preloader.style.display = "none";
+            console.log("✅ Предзагрузчик скрыт");
         }
     };
 
     const getData = async () => {
         if (!container) {
-            console.error("Контейнер 'data-container' не найден.");
+            console.error("❌ Контейнер 'data-container' не найден.");
             hidePreloader();
             return;
         }
 
         try {
+            console.log("📡 Загружаем данные...");
             const response = await fetch("/data/data.json");
 
             if (!response.ok) {
@@ -103,10 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 container.appendChild(div);
             });
         } catch (error) {
-            console.error("Ошибка при загрузке данных:", error);
+            console.error("❌ Ошибка при загрузке данных:", error);
             container.innerHTML = `<p class="error">Не удалось загрузить данные.</p>`;
         } finally {
-            hidePreloader(); // скрыть прелоадер в любом случае
+            hidePreloader();
         }
     };
 
