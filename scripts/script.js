@@ -188,5 +188,5 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         alert('Форма регистрации будет реализована позже');
     });
-});
+
 
