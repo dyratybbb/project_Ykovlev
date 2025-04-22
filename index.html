@@ -27,25 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    
 </head>
-    <h2>Регистрация</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
-</form>
-<a href="{% url 'login' %}">Уже есть аккаунт? Войти</a>
     
-    <h2>Вход</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Войти</button>
-</form>
-<a href="{% url 'register' %}">Нет аккаунта? Зарегистрироваться</a>
-    
-    <h2>Главная страница</h2>
-<p>Добро пожаловать, {{ request.user.username }}!</p>
-<a href="{% url 'logout' %}">Выйти</a>
 <body>
     <header>
         <div class="container">
